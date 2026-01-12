@@ -4,179 +4,133 @@
         <name>PrivateAPIEngineBridge.Core</name>
     </assembly>
     <members>
-        <member name="T:PrivateAPIBridge.AnimationClipExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.AnimationClip"/>.</summary>
+        <member name="T:PrivateAPIBridge.UnsafeGridHandle">
+            <summary>
+            A struct providing unsafe access to <see cref="T:UnityEngine.Grid"/>.
+            </summary>
         </member>
-        <member name="M:PrivateAPIBridge.AnimationClipExtensions.get_startTime(UnityEngine.AnimationClip)">
-            <inheritdoc cref="P:PrivateAPIBridge.AnimationClipExtensions.&lt;G&gt;$87180E789F687AD90B53AC62A3910666.startTime"/>
+        <member name="P:PrivateAPIBridge.UnsafeGridHandle.cellSize">
+            <summary>
+            The size of each cell in the Grid.
+            </summary>
         </member>
-        <member name="M:PrivateAPIBridge.AnimationClipExtensions.get_stopTime(UnityEngine.AnimationClip)">
-            <inheritdoc cref="P:PrivateAPIBridge.AnimationClipExtensions.&lt;G&gt;$87180E789F687AD90B53AC62A3910666.stopTime"/>
+        <member name="P:PrivateAPIBridge.UnsafeGridHandle.cellGap">
+            <summary>
+            The size of the gap between each cell in the Grid.
+            </summary>
         </member>
-        <member name="M:PrivateAPIBridge.AnimationClipExtensions.get_hasRootMotion(UnityEngine.AnimationClip)">
-            <inheritdoc cref="P:PrivateAPIBridge.AnimationClipExtensions.&lt;G&gt;$87180E789F687AD90B53AC62A3910666.hasRootMotion"/>
+        <member name="P:PrivateAPIBridge.UnsafeGridHandle.cellLayout">
+            <summary>
+            The layout of the cells in the Grid.
+            </summary>
         </member>
-        <member name="P:PrivateAPIBridge.AnimationClipExtensions.&lt;G&gt;$87180E789F687AD90B53AC62A3910666.startTime">
-            <summary>Start time in seconds.</summary>
+        <member name="P:PrivateAPIBridge.UnsafeGridHandle.cellSwizzle">
+            <summary>
+            The cell swizzle for the Grid.
+            </summary>
         </member>
-        <member name="P:PrivateAPIBridge.AnimationClipExtensions.&lt;G&gt;$87180E789F687AD90B53AC62A3910666.stopTime">
-            <summary>Stop time in seconds.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.CreateFrom(UnityEngine.Grid)">
+            <summary>
+            Creates an <see cref="T:PrivateAPIBridge.UnsafeGridHandle"/> from a <see cref="T:UnityEngine.Grid"/>.
+            </summary>
+            <param name="grid">The grid to create the handle from.</param>
+            <returns>A new <see cref="T:PrivateAPIBridge.UnsafeGridHandle"/>.</returns>
+            <exception cref="T:System.NullReferenceException">Thrown when the grid is null or invalid.</exception>
         </member>
-        <member name="P:PrivateAPIBridge.AnimationClipExtensions.&lt;G&gt;$87180E789F687AD90B53AC62A3910666.hasRootMotion">
-            <summary>Returns true if the <see cref="T:UnityEngine.AnimationClip"/> has root motion.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.GetBoundsLocal(UnityEngine.Vector3Int)">
+            <summary>
+            Returns the local bounds for a cell at the location.
+            </summary>
+            <param name="cellPosition">Location of the cell.</param>
+            <returns>Local bounds of cell at the location.</returns>
         </member>
-        <member name="T:PrivateAPIBridge.AnimationCurveExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.AnimationCurve"/>.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.GetBoundsLocal(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Returns the local bounds for the groups of cells at the location.
+            </summary>
+            <param name="origin">Origin of the group of cells.</param>
+            <param name="size">Size of the group of cells.</param>
+            <returns>Local bounds of the group of cells at the location.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.AnimationCurveExtensions.GetPtr(UnityEngine.AnimationCurve)">
-            <inheritdoc cref="M:PrivateAPIBridge.AnimationCurveExtensions.&lt;G&gt;$74306D0980FDA01B0186C03EB679DA80.GetPtr"/>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.CellToLocal(UnityEngine.Vector3Int)">
+            <summary>
+            Converts a cell position to local position space.
+            </summary>
+            <param name="cellPosition">Cell position to convert.</param>
+            <returns>Local position of the cell position.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.AnimationCurveExtensions.&lt;G&gt;$74306D0980FDA01B0186C03EB679DA80.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.LocalToCell(UnityEngine.Vector3)">
+            <summary>
+            Converts a local position to cell position.
+            </summary>
+            <param name="localPosition">Local Position to convert.</param>
+            <returns>Cell position of the local position.</returns>
         </member>
-        <member name="T:PrivateAPIBridge.AsyncOperationExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.AsyncOperation"/>.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.CellToLocalInterpolated(UnityEngine.Vector3)">
+            <summary>
+            Converts an interpolated cell position in floats to local position space.
+            </summary>
+            <param name="cellPosition">Interpolated cell position to convert.</param>
+            <returns>Local position of the cell position.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.AsyncOperationExtensions.GetPtr(UnityEngine.AsyncOperation)">
-            <inheritdoc cref="M:PrivateAPIBridge.AsyncOperationExtensions.&lt;G&gt;$E1E24BCD7E316FBEF1DDD617A0CA13E6.GetPtr"/>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.LocalToCellInterpolated(UnityEngine.Vector3)">
+            <summary>
+            Converts a local position to interpolated cell position.
+            </summary>
+            <param name="localPosition">Local Position to convert.</param>
+            <returns>Interpolated cell position of the local position.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.AsyncOperationExtensions.&lt;G&gt;$E1E24BCD7E316FBEF1DDD617A0CA13E6.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.CellToWorld(UnityEngine.Vector3Int)">
+            <summary>
+            Converts a cell position to world position space.
+            </summary>
+            <param name="cellPosition">Cell position to convert.</param>
+            <returns>World position of the cell position.</returns>
         </member>
-        <member name="T:PrivateAPIBridge.CommandBufferExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.Rendering.CommandBuffer"/>.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.WorldToCell(UnityEngine.Vector3)">
+            <summary>
+            Converts a world position to cell position.
+            </summary>
+            <param name="worldPosition">World Position to convert.</param>
+            <returns>Cell position of the world position.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.CommandBufferExtensions.GetPtr(UnityEngine.Rendering.CommandBuffer)">
-            <inheritdoc cref="M:PrivateAPIBridge.CommandBufferExtensions.&lt;G&gt;$28F2EE25A2DC8F2594DD5FD724DA7DB9.GetPtr"/>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.LocalToWorld(UnityEngine.Vector3)">
+            <summary>
+            Converts a local position to world position.
+            </summary>
+            <param name="localPosition">Local Position to convert.</param>
+            <returns>World position of the local position.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.CommandBufferExtensions.&lt;G&gt;$28F2EE25A2DC8F2594DD5FD724DA7DB9.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.WorldToLocal(UnityEngine.Vector3)">
+            <summary>
+            Converts a world position to local position.
+            </summary>
+            <param name="worldPosition">World Position to convert.</param>
+            <returns>Local position of the world position.</returns>
         </member>
-        <member name="T:PrivateAPIBridge.ComputeBufferExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.ComputeBuffer"/>.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.GetLayoutCellCenter">
+            <summary>
+            Get the default center coordinate of a cell for the set layout of the Grid.
+            </summary>
+            <returns>Cell Center coordinate.</returns>
         </member>
-        <member name="M:PrivateAPIBridge.ComputeBufferExtensions.GetPtr(UnityEngine.ComputeBuffer)">
-            <inheritdoc cref="M:PrivateAPIBridge.ComputeBufferExtensions.&lt;G&gt;$BA6B7672065ABE008DB5533A1B061F14.GetPtr"/>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.GetCellCenterLocal(UnityEngine.Vector3Int)">
+            <summary>
+            Get the logical center coordinate of a grid cell in local space.
+            </summary>
+            <param name="position">Grid cell position.</param>
+            <returns>
+            Center of the cell transformed into local space coordinates.
+            </returns>
         </member>
-        <member name="M:PrivateAPIBridge.ComputeBufferExtensions.&lt;G&gt;$BA6B7672065ABE008DB5533A1B061F14.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.CoroutineExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.Coroutine"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.CoroutineExtensions.GetPtr(UnityEngine.Coroutine)">
-            <inheritdoc cref="M:PrivateAPIBridge.CoroutineExtensions.&lt;G&gt;$7FE1DCD1EBC8AA0274018BD425855861.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.CoroutineExtensions.&lt;G&gt;$7FE1DCD1EBC8AA0274018BD425855861.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.CullingGroupExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.CullingGroup"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.CullingGroupExtensions.GetPtr(UnityEngine.CullingGroup)">
-            <inheritdoc cref="M:PrivateAPIBridge.CullingGroupExtensions.&lt;G&gt;$1353324D9FA414AC28EF0778C2FEBD8A.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.CullingGroupExtensions.&lt;G&gt;$1353324D9FA414AC28EF0778C2FEBD8A.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.GraphicsBufferExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.GraphicsBuffer"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.GraphicsBufferExtensions.GetPtr(UnityEngine.GraphicsBuffer)">
-            <inheritdoc cref="M:PrivateAPIBridge.GraphicsBufferExtensions.&lt;G&gt;$748A35D4310DE578C922D4ECCDFA3D94.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.GraphicsBufferExtensions.&lt;G&gt;$748A35D4310DE578C922D4ECCDFA3D94.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.HumanPoseHandlerExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.HumanPoseHandler"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.HumanPoseHandlerExtensions.GetPtr(UnityEngine.HumanPoseHandler)">
-            <inheritdoc cref="M:PrivateAPIBridge.HumanPoseHandlerExtensions.&lt;G&gt;$8742944454552C97F353BA59E4341107.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.HumanPoseHandlerExtensions.&lt;G&gt;$8742944454552C97F353BA59E4341107.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.MaterialPropertyBlockExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.MaterialPropertyBlock"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.MaterialPropertyBlockExtensions.GetPtr(UnityEngine.MaterialPropertyBlock)">
-            <inheritdoc cref="M:PrivateAPIBridge.MaterialPropertyBlockExtensions.&lt;G&gt;$2D5D871AAFC8FF4ECF2C64E7F9969EC0.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.MaterialPropertyBlockExtensions.&lt;G&gt;$2D5D871AAFC8FF4ECF2C64E7F9969EC0.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.NavMeshPathExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.AI.NavMeshPath"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.NavMeshPathExtensions.GetPtr(UnityEngine.AI.NavMeshPath)">
-            <inheritdoc cref="M:PrivateAPIBridge.NavMeshPathExtensions.&lt;G&gt;$305023D6BA59BFD9CBF172CABAEB91B8.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.NavMeshPathExtensions.&lt;G&gt;$305023D6BA59BFD9CBF172CABAEB91B8.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.ObjectExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.Object"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.ObjectExtensions.GetCachedPtr(UnityEngine.Object)">
-            <inheritdoc cref="M:PrivateAPIBridge.ObjectExtensions.&lt;G&gt;$91BA3A1FCAE39728B2693A632C857E1E.GetCachedPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.ObjectExtensions.CurrentThreadIsMainThread">
-            <inheritdoc cref="M:PrivateAPIBridge.ObjectExtensions.&lt;G&gt;$91BA3A1FCAE39728B2693A632C857E1E.CurrentThreadIsMainThread"/>
-        </member>
-        <member name="M:PrivateAPIBridge.ObjectExtensions.GetOffsetOfInstanceIDInCPlusPlusObject">
-            <inheritdoc cref="M:PrivateAPIBridge.ObjectExtensions.&lt;G&gt;$91BA3A1FCAE39728B2693A632C857E1E.GetOffsetOfInstanceIDInCPlusPlusObject"/>
-        </member>
-        <member name="M:PrivateAPIBridge.ObjectExtensions.&lt;G&gt;$91BA3A1FCAE39728B2693A632C857E1E.GetCachedPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.ObjectExtensions.&lt;G&gt;$91BA3A1FCAE39728B2693A632C857E1E.CurrentThreadIsMainThread">
-            <summary>Returns true if called from the main thread.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.ObjectExtensions.&lt;G&gt;$91BA3A1FCAE39728B2693A632C857E1E.GetOffsetOfInstanceIDInCPlusPlusObject">
-            <summary>Returns the offset of the <c>m_InstanceID</c> field in the C++ <c>Object</c> class.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.PhysicsExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.Physics"/>.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.PhysicsSceneExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.PhysicsScene"/>.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.RendererExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.Renderer"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.RendererExtensions.GetMaterialCount(UnityEngine.Renderer)">
-            <inheritdoc cref="M:PrivateAPIBridge.RendererExtensions.&lt;G&gt;$70B9E77625CF1C3C021A4C12A62EA1AE.GetMaterialCount"/>
-        </member>
-        <member name="M:PrivateAPIBridge.RendererExtensions.&lt;G&gt;$70B9E77625CF1C3C021A4C12A62EA1AE.GetMaterialCount">
-            <summary>Gets the number of materials on the renderer.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.TextGeneratorExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.TextGenerator"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.TextGeneratorExtensions.GetPtr(UnityEngine.TextGenerator)">
-            <inheritdoc cref="M:PrivateAPIBridge.TextGeneratorExtensions.&lt;G&gt;$98D7820D64F04973F55ECC6BE38AFB15.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.TextGeneratorExtensions.&lt;G&gt;$98D7820D64F04973F55ECC6BE38AFB15.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.TrackedReferenceExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.TrackedReference"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.TrackedReferenceExtensions.GetPtr(UnityEngine.TrackedReference)">
-            <inheritdoc cref="M:PrivateAPIBridge.TrackedReferenceExtensions.&lt;G&gt;$A1E941AD1C95238A97A0BC0FD3FA114C.GetPtr"/>
-        </member>
-        <member name="M:PrivateAPIBridge.TrackedReferenceExtensions.&lt;G&gt;$A1E941AD1C95238A97A0BC0FD3FA114C.GetPtr">
-            <summary>Gets a pointer to the underlying native object.</summary>
-        </member>
-        <member name="T:PrivateAPIBridge.WaitForSecondsExtensions">
-            <summary>Provides extensions for <see cref="T:UnityEngine.WaitForSeconds"/>.</summary>
-        </member>
-        <member name="M:PrivateAPIBridge.WaitForSecondsExtensions.GetSeconds(UnityEngine.WaitForSeconds)">
-            <inheritdoc cref="M:PrivateAPIBridge.WaitForSecondsExtensions.&lt;G&gt;$099725B602701AE1DFD853A9DA688EC9.GetSeconds"/>
-        </member>
-        <member name="M:PrivateAPIBridge.WaitForSecondsExtensions.&lt;G&gt;$099725B602701AE1DFD853A9DA688EC9.GetSeconds">
-            <summary>Gets the amount of time in seconds that execution will be delayed for.</summary>
+        <member name="M:PrivateAPIBridge.UnsafeGridHandle.GetCellCenterWorld(UnityEngine.Vector3Int)">
+            <summary>
+            Get the logical center coordinate of a grid cell in world space.
+            </summary>
+            <param name="position">Grid cell position.</param>
+            <returns>
+            Center of the cell transformed into world space coordinates.
+            </returns>
         </member>
     </members>
 </doc>

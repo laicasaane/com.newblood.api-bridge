@@ -1,8 +1,6 @@
 <Solution>
   <Project Path="PrivateAPIEditorBridge.Core/PrivateAPIEditorBridge.Core.csproj" />
   <Project Path="PrivateAPIEngineBridge.Core/PrivateAPIEngineBridge.Core.csproj" />
-  <Project Path="PrivateAPIEngineBridge.Ping/PrivateAPIEngineBridge.Ping.csproj" />
-  <Project Path="PrivateAPIEngineBridge.2023.1/PrivateAPIEngineBridge.2023.1.csproj" />
   <Project Path="UnityEditor/UnityEditor.csproj" />
   <Project Path="UnityEngine/UnityEngine.csproj" />
 </Solution>

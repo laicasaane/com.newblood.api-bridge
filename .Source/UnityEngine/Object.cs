@@ -4,7 +4,20 @@ namespace UnityEngine;
 
 public class Object
 {
-    public extern IntPtr GetCachedPtr();
-    public static extern bool CurrentThreadIsMainThread();
-    public static extern int GetOffsetOfInstanceIDInCPlusPlusObject();
+    public static class MarshalledUnityObject
+    {
+        public static IntPtr Marshal(object obj)
+        {
+            return default;
+        }
+
+        public static IntPtr MarshalNotNull(object obj)
+        {
+            return default;
+        }
+
+        public static void TryThrowEditorNullExceptionObject(Object unityObj, string parameterName)
+        {
+        }
+    }
 }
