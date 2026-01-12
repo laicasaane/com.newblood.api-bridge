@@ -1,9 +1,0 @@
-﻿using System;
-
-namespace UnityEngine;
-
-public class MaterialPropertyBlock
-{
-    // ShaderPropertySheet*
-    public IntPtr m_Ptr;
-}
